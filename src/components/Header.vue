@@ -5,17 +5,12 @@
     </header>
 </template>
 
-<script>
+<script setup>
     import Button from './Button.vue'
 
-    export default {
-        props: {
-            title: String
-        },
-        components:{
-            Button
-        }
-    }
+    const props = defineProps({
+        title: String
+    })
 </script>
 
 <style scoped>

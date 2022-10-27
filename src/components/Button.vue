@@ -2,13 +2,15 @@
     <button @click="onClick()" :style="{background: color}" class="btn">{{text}}</button>
 </template>
 
+<script setup>
+    const props = defineProps({
+        text: String,
+        color: String
+    })
+</script>
+
 <script>
     export default {
-        name: 'Button',
-        props: {
-            text: String,
-            color: String
-        },
         methods: {
             onClick(){
                 console.log('click');
