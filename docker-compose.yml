@@ -1,0 +1,23 @@
+services:
+    task-tracker:
+      image: "node:16"
+      container_name: "task-tracker"
+      user: "node"
+      working_dir: "/usr/src/app"
+      environment:
+        - NODE_ENV=development
+      volumes:
+        - ./:/usr/src/app
+      ports:
+        - "8080:8080"
+      command: "npm run dev -- --port 8080"
+    task-tracker-db:
+      image: "clue/json-server"
+      container_name: "task-tracker-db"
+      working_dir: "/data"
+      environment:
+        - NODE_ENV=development
+      volumes:
+        - ./db:/data
+      ports:
+        - "5000:80" #has to be 80 because the image exposes port 80

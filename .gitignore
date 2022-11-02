@@ -28,6 +28,5 @@ coverage
 *.sw?
 
 #docker
-docker-compose.yml
 db/db.json
 vite.config.js
