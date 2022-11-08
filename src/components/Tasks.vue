@@ -1,15 +1,18 @@
 <template>
-    <div :key="task.id" v-for="task in tasks">
-        <Task @toggle-reminder="$emit('toggle-reminder', task.id)" @delete-task="$emit('delete-task', task.id)" :task = task />
+    <div :key="task.id" v-for="task in taskStore.tasks">
+        <Task :task = task />
     </div>
 </template>
 
 <script setup>
     import Task from './Task.vue'
+    import { useTaskStore } from '@/stores/TaskStore'
+    const taskStore = useTaskStore()
+
+    taskStore.fetchTasks()
 
     const props = defineProps({
         tasks: Array
     })
 
-    const emit = defineEmits(['delete-task', 'toggle-reminder'])
 </script>

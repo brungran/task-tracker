@@ -21,6 +21,11 @@
     </form>
 </template>
 
+<script setup>
+    import { useTaskStore } from '@/stores/TaskStore'
+    const taskStore = useTaskStore()
+</script>
+
 <script>
     export default{
         data(){
@@ -44,12 +49,11 @@
                     day: this.day,
                     reminder: this.reminder
                 }
-
-                this.$emit('add-task', newTask)
-
                 this.text = ''
                 this.day = ''
                 this.reminder = false
+                
+                this.taskStore.addTask(newTask)
             }
         }
     }

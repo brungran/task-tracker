@@ -1,27 +1,20 @@
 <template>
-    <div @dblclick="$emit('toggle-reminder', task.id)" :class="[task.reminder ? 'reminder' : '', 'task']">
+    <div @dblclick="taskStore.toggleReminder(task.id)" :class="[task.reminder ? 'reminder' : '', 'task']">
         <h3>
             {{task.text}}
-            <i @click="onDelete(task.id)" class="fas fa-times"></i>
+            <i @click="taskStore.deleteTask(task.id)" class="fas fa-times"></i>
         </h3>
         <p>{{task.day}}</p>
     </div>
 </template>
 
 <script setup>
+    import { useTaskStore } from '@/stores/TaskStore'
+    const taskStore = useTaskStore()
+
     const props = defineProps({
         task: Object
     })
-</script>
-
-<script>
-    export default{
-        methods: {
-            onDelete(id){
-                this.$emit('delete-task', id)
-            }
-        }
-    }
 </script>
 
 <style scoped>
